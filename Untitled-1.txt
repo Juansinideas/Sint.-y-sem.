@@ -1,0 +1,71 @@
+program ejercicio10;
+
+type
+    TProducto = record
+        codigo: integer;
+        descripcion: string[50];
+        precio: real;
+        stock: integer;
+    end;
+
+var
+    producto: TProducto;
+    archivo: file of TProducto;  { archivo tipado }
+    opcion: integer;
+
+procedure NuevoProducto; 
+begin
+    write('Codigo: '); readln(producto.codigo);
+    write('Descripcion: '); readln(producto.descripcion);
+    write('Precio: '); readln(producto.precio);
+    write('Stock: '); readln(producto.stock);
+
+    assign(archivo, 'inventario.dat');
+    {$I-}               
+    reset(archivo);
+    {$I+}
+
+    if IOResult <> 0 then
+        rewrite(archivo)                    { crea el archivo si no existe }    
+    else
+        seek(archivo, filesize(archivo));   { se posiciona al final del archivo si existe }
+
+    write(archivo, producto);
+    close(archivo);
+    writeln('Producto agregado correctamente.');
+end;
+
+procedure ListaProductos; 
+begin
+    
+
+end;
+
+procedure BuscarPorCodigo;
+begin
+  
+
+end;
+
+begin
+    repeat
+        writeln;
+        writeln('------- Menu de Opciones ------');
+        writeln('1. Agregar producto');
+        writeln('2. Ver listado de productos');
+        writeln('3. Buscar por codigo');
+        writeln('0. Salir');
+        writeln('Opcion: '); readln(opcion);
+
+        case opcion of
+            1: NuevoProducto;
+            2: ListaProductos;
+            3: BuscarPorCodigo;
+            0: writeln('Fin del Programa.');
+        else
+            writeln('Opcion no valida.');
+        end;
+    until opcion = 0;
+    readln;
+  
+end
