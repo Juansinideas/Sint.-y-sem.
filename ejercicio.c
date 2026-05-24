@@ -31,14 +31,13 @@ int main()
         }
 
     }
-    printf("%d", posmax);
     printf("El numero mayor es: %d y se obtuvo en la posicion: %d\n", may, posmax);
     printf("El numero menor es: %d y se obtuvo en la posicion: %d\n", min, posmin);
     printf("Los otros 3 numeros ingresados son: ");
     for(int i=0;i<5;++i){
         if(i != posmax && i != posmin)
         
-        {printf(" %d", num[i]);
+        {printf(" %d,", num[i]);
         }
     }
 
